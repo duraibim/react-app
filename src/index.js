@@ -10,8 +10,12 @@ ReactDOM.render(
 
     <Weather/>
 
-    <footer> <a href="https://github.com/duraibim/react-app" target="_blank"> Open-source code</a> by Manal Alduraibi🐞</footer> 
-
+    <footer>
+          <a
+            href="https://github.com/duraibim/react-app" 
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open-source code</a> by Manal Alduraibi🐞</footer> 
   </React.StrictMode>,
   document.getElementById('root')
 );

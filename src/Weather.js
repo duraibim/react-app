@@ -31,6 +31,7 @@ export default function Search(){
           }
 
     let form = (
+        <div className="weather-app">
         <form className="search-form" onSubmit= {handleSubmit}>
         <div class="row">
             <div class="col-9">
@@ -45,7 +46,7 @@ export default function Search(){
                 onChange={updateCity}
             />
             </div>
-            <div class="col-3">
+            <div className="col-3">
             <input
                 type="submit"
                 value="Search"
@@ -53,13 +54,14 @@ export default function Search(){
             </div>
         </div>
         </form>
+        </div>
    );
 
     if (loaded){
         return (
         <div>
         {form}
-        <ul>
+        <ul className="ul">
             <li>City: {weather.city}</li>
             <li>Temperature: {Math.round(weather.temperature)}°C</li>
           
