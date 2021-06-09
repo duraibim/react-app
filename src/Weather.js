@@ -1,40 +1,37 @@
 import React, {useState} from "react";
 import axios from "axios";
+import './Weather.css';
 
 
 
-export default function Weather(props){
-    
-    const [weatherData, setWeatherData] = useState({ready: false});
-    const [city, setCity] = useState(props.defaultCity);
+export default function Search(){
+    const [city, setCity] = useState("");
+    const [loaded, setLoaded] = useState(false);
+    const [weather, setWeather] = useState({});
 
     function handleResponse(response){
-        setWeatherData({
+        setLoaded(true);
+        setWeather({
             ready: true,   
             city: response.data.name,
             temperature: response.data.main.temp,
           });
         }
     
+
     function handleSubmit(event) {
         event.preventDefault();
-        search();
-        }
-    
-    function handleChange(event) {
-        setCity(event.target.value);
-        }
-
-    function search() {
         let apiKey = "0196dac33373aaa2798921754f07b116";
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         axios.get(url).then(handleResponse);
         }
 
+        function updateCity(event) {
+            setCity(event.target.value);
+          }
 
-    if (weatherData.ready){
-        return (
-<form className="search-form" id="search-form" onSubmit= {handleSubmit}>
+    let form = (
+        <form className="search-form" onSubmit= {handleSubmit}>
         <div class="row">
             <div class="col-9">
             <input
@@ -45,7 +42,7 @@ export default function Weather(props){
                 autofocus="on"
                 autocomplete="off"
                 value={city}
-                onChange={handleChange}
+                onChange={updateCity}
             />
             </div>
             <div class="col-3">
@@ -56,14 +53,22 @@ export default function Weather(props){
             </div>
         </div>
         </form>
-
-
-    
-
    );
+
+    if (loaded){
+        return (
+        <div>
+        {form}
+        <ul>
+            <li>City: {weather.city}</li>
+            <li>Temperature: {Math.round(weather.temperature)}°C</li>
+          
+        </ul>
+      </div>
+    );
+
 }else{
-    search();
-   return "Loading....";
+   return form;
  } 
 }
        

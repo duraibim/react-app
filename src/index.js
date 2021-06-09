@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import Weather from './Weather';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    <Weather/>
+
+    <footer> <a href="https://github.com/duraibim/react-app" target="_blank"> Open-source code</a> by Manal Alduraibi🐞</footer> 
+
   </React.StrictMode>,
   document.getElementById('root')
 );
